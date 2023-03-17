@@ -1,0 +1,66 @@
+.header {
+    width: 100%;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: yellowgreen;
+}
+
+.footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    text-align: center;
+    height:40px;
+    line-height: 40px;   
+}
+
+.table {
+    width: 60%;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btnNewUser {
+    margin-left: 20%;
+    margin-top: 3%;
+    font-size: 15px;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.marginRight {
+    margin-right: 20px;
+}
+
+.formCreateUser {
+    width: 40%;
+    margin-top: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.btnSave {
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.titleNewUser {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.descNewUser {
+    text-align: center;
+}
+
+.deleteBtn {
+    cursor: pointer;
+}

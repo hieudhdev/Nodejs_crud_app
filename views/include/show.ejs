@@ -1,0 +1,93 @@
+<div>
+  <a type="button" class="btn btn-secondary btnNewUser" method="" href="/create">
+      New User
+      <i class="fa-solid fa-user-plus"></i>
+  </a>
+</div>
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <% for (var i = 0; i<users.length; i++) { %>
+        <tr>
+          <th scope="row"> <%= i + 1 %> </th>
+          <td> <%= users[i].name %> </td>
+          <td> <%= users[i].email %> </td>
+          <td> <%= users[i].gender %> </td>
+          <td> <%= users[i].status %> </td>
+          <td>
+            <a href="/update?id=<%= users[i]._id %>" class="marginRight">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a href="" class="deleteIcon" data-id=<%= users[i]._id %> data-toggle="modal" data-target="#confirm_delete_modal"> <!-- data-id to send any data into attribute of this tag, here is a tag -->
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      <% } %>
+
+    </tbody>
+</table>
+
+
+<!-- Confirm delete modal -->
+<div id="confirm_delete_modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Notifications</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Do you really want to delete this user? </p>
+        <!-- <input type="text" value="" id="testID"> -->
+      </div>
+      <div class="modal-footer">
+        <button id="deleteBtn" type="button" class="btn btn-primary">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--END: Confirm delete form (modal) -->
+
+<!-- Delete form submit -->
+<form name="delete_form_submit" method="POST"></form>
+<!-- End : Delete form submit -->
+
+<script>
+
+  document.addEventListener('DOMContentLoaded', function() {  // have to load DOM before jquery
+
+    var userID 
+    // get user ID form deleteIcon
+    $(document).on("click", ".deleteIcon", function () { 
+      userID = $(this).data('id');
+      $(".modal-body #testID").val( userID );
+     
+    });
+
+    // get delete form, delete button
+    deleteForm = document.forms['delete_form_submit'];
+    deleteButton = document.getElementById('deleteBtn');
+    // when click button delete confirm
+    deleteButton.onclick = function () {
+      deleteForm.action = 'http://localhost:3000/api/user/delete/' + userID + '?_method=DELETE';
+      deleteForm.submit();
+    }
+
+  })
+
+</script>
